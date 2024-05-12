@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Untouchable Button</title>
+<style>
+  .untouchable-button {
+    width: 200px;
+    height: 50px;
+    background-color: #657065;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition: all 0.2s ease; /* Smooth transition */
+    border-radius: 5px;
+  }
+  form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 8rem;
+    }
+  input{
+    width: 400px;
+    height: 50px;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    padding: 0 1rem;
+    font-size: 16px;
+  }
+</style>
+</head>
+<body>
+
+
+    <form action="">
+        <h1>Find Me</h1>
+        <input type="text" placeholder="Find me" name="find">
+        <button type="button" class="untouchable-button" id="untouchableButton" onclick="alert('You cannot touch this button!')">Don't Touch</button>
+    </form>
+
+
+
+<script>
+document.addEventListener('mousemove', function(e) {
+  // Get button and cursor positions
+  var button = document.getElementById('untouchableButton');
+  var buttonRect = button.getBoundingClientRect();
+  var cursorX = e.clientX;
+  var cursorY = e.clientY;
+  
+  // Calculate the distance between the button and the cursor
+  var dx = cursorX - buttonRect.left - buttonRect.width / 2;
+  var dy = cursorY - buttonRect.top - buttonRect.height / 2;
+  var distance = Math.sqrt(dx*dx + dy*dy);
+  
+  // Move the button away from the cursor
+  if (distance <= 300) { // Adjust this value as needed
+    button.style.transform = 'translate(' + (-dx) + 'px, ' + (-dy) + 'px)';
+  } else {
+    button.style.transform = 'none';
+  }
+});
+</script>
+
+</body>
+</html>
+
